@@ -2,18 +2,19 @@
 
 namespace App\Controller;
 
-use Symfony\Component\HttpFoundation\Response;
+use App\Service\ParameterFilterService;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\JsonResponse;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
 
-class ParameterController
+class ParameterController extends AbstractController
 {
     #[Route('/parameter', name: 'app_parameter_list')]
-    public function number(): Response
+    public function list(Request $request, ParameterFilterService $filterService): JsonResponse
     {
-        $number = random_int(0, 10);
-
-        return new Response(
-            '<html><body>Lucky number: '.$number.'</body></html>'
+        return new JsonResponse(
+            $filterService->filter($request->query->all())
         );
     }
 }
