@@ -1,0 +1,36 @@
+version: "3"
+
+services:
+  db:
+    image: mysql
+    env_file:
+      - ./docker/env/mysql.env
+    ports:
+      - 3306:3306
+    networks:
+        - symfony
+    volumes:
+      - db-data:/var/lib/mysql:rw
+  php:
+    build:
+      context: ./docker/php
+    volumes:
+        - .:/var/www/symfony/
+    networks:
+        - symfony
+  nginx:
+    image: nginx:latest
+    depends_on:
+      - php
+    volumes:
+        - ./public:/var/www/symfony/public:ro
+        - ./docker/nginx/default.conf:/etc/nginx/nginx.conf:ro
+    ports:
+        - 80:80
+    networks:
+        - symfony
+volumes:
+  db-data:
+
+networks:
+    symfony:
