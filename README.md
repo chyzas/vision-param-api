@@ -13,7 +13,7 @@ The environment consists of 3 containers, running:
 
 1. Clone this rep
 2. Run `docker compose up -d`
-3. Once the containers are created ssh into the `php` container and run following commands
+3. Once the containers are created ssh into the php `docker exec -it container_id sh` container and run following commands
 
 ```
 composer install
