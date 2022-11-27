@@ -18,7 +18,7 @@ class AppFixtures extends Fixture
         $manager->persist($parameter1);
 
         $parameter2 = new Parameter();
-        $parameter2->setName('parameter1');
+        $parameter2->setName('parameter2');
         $manager->persist($parameter2);
 
         $option1 = new OptionValue();

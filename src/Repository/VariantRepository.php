@@ -49,6 +49,7 @@ class VariantRepository extends ServiceEntityRepository
             ->innerJoin('po.optionValue', 'ov')
             ->innerJoin('po.parameter', 'p')
             ->andWhere('v.code IN (:codes)')
+            ->orderBy('ov.value')
             ->groupBy('p.name, ov.value')
             ->setParameter('codes', $codes);
 
