@@ -17,7 +17,7 @@ The environment consists of 3 containers, running:
 
 ```
 composer install
-php "bin/console" doctrine:schema:create
+php "bin/console" doctrine:database:create
 php "bin/console" doctrine:migrations:migrate
 php "bin/console" doctrine:fixtures:load
 ``` 
